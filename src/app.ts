@@ -43,6 +43,35 @@ function AutoBind() {
   };
 }
 
+class ProjectList {
+  templateEl: HTMLTemplateElement;
+  hostEl: HTMLDivElement;
+  element: HTMLElement;
+  constructor(private type: "active" | "finished") {
+    this.templateEl = document.getElementById(
+      "project-list"
+    )! as HTMLTemplateElement;
+    this.hostEl = document.getElementById("app")! as HTMLDivElement;
+
+    const nodeEl = document.importNode(this.templateEl.content, true);
+    this.element = nodeEl.firstElementChild! as HTMLFormElement;
+    this.element.id = `${this.type}-projects`;
+    this.attach();
+    this.renderContent();
+  }
+  attach() {
+    this.hostEl.insertAdjacentElement("beforeend", this.element);
+  }
+
+  renderContent() {
+    const listId = `${this.type}-projects-list`;
+    this.element.querySelector("ul")!.id = listId;
+    this.element.querySelector(
+      "h2"
+    )!.textContent = `${this.type.toUpperCase()} PROJECTS`;
+  }
+}
+
 class ProjectInput {
   templateEl: HTMLTemplateElement;
   hostEl: HTMLDivElement;
@@ -102,11 +131,6 @@ class ProjectInput {
       min: 1,
       max: 10,
     });
-    console.log(isTitleValid);
-    console.log(isDescValid);
-
-    console.log(isPeopleValid);
-
     if (!isTitleValid || !isDescValid || !isPeopleValid) {
       alert("please enter valid values!..");
       return;
@@ -126,3 +150,5 @@ class ProjectInput {
 }
 
 const projectIn = new ProjectInput();
+const activeProjects = new ProjectList("active");
+const finishedProjects = new ProjectList("finished");
