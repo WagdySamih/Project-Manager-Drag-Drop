@@ -151,7 +151,7 @@ class ProjectList extends Component<HTMLDivElement, HTMLElement> {
       `${this.type}-projects-list`
     )! as HTMLUListElement;
 
-    listEl.innerHTML = ''
+    listEl.innerHTML = "";
     this.projects.forEach((proj: Project) => {
       const isActiveProj = proj.status == 0 && this.type == "active";
       const isFinishedProj = proj.status == 1 && this.type == "finished";
