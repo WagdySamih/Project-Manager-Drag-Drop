@@ -57,7 +57,7 @@ class Project {
   ) {}
 }
 
-type Listener = (items: Project[]) => void;
+type Listener<T> = (items: T[]) => void;
 
 abstract class Component<T extends HTMLElement, U extends HTMLElement> {
   templateEl: HTMLTemplateElement;
@@ -91,9 +91,14 @@ abstract class Component<T extends HTMLElement, U extends HTMLElement> {
   abstract renderContent(): void;
 }
 
-class ProjectState {
+class State<T> {
+  protected listeners: Listener<T>[] = [];
+  addListener(fn: Listener<T>) {
+    this.listeners.push(fn);
+  }
+}
+class ProjectState extends State<Project> {
   private projects: Project[] = [];
-  private listeners: Listener[] = [];
   private static instance: ProjectState;
 
   addProject(title: string, description: string, numOfPeople: number) {
@@ -108,10 +113,6 @@ class ProjectState {
     this.listeners.forEach((fn) => {
       fn(this.projects.slice());
     });
-  }
-
-  addListener(fn: Listener) {
-    this.listeners.push(fn);
   }
 
   static getInstance() {
