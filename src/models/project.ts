@@ -1,16 +1,14 @@
-namespace App {
-  export enum ProjectStatus {
-    active,
-    finished,
-  }
+export enum ProjectStatus {
+  active,
+  finished,
+}
 
-  export class Project {
-    id = Math.random().toString();
-    constructor(
-      public title: string,
-      public description: string,
-      public people: number,
-      public status: ProjectStatus
-    ) {}
-  }
+export class Project {
+  id = Math.random().toString();
+  constructor(
+    public title: string,
+    public description: string,
+    public people: number,
+    public status: ProjectStatus
+  ) {}
 }

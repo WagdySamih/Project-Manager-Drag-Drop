@@ -1,15 +1,13 @@
-namespace App {
-  export function AutoBind() {
-    return function (_: any, _2: string, descriptor: PropertyDescriptor) {
-      const originalMethod = descriptor.value;
-      const adjDescriptor: PropertyDescriptor = {
-        configurable: true,
-        get() {
-          const boundedFn = originalMethod.bind(this);
-          return boundedFn;
-        },
-      };
-      return adjDescriptor;
+export function AutoBind() {
+  return function (_: any, _2: string, descriptor: PropertyDescriptor) {
+    const originalMethod = descriptor.value;
+    const adjDescriptor: PropertyDescriptor = {
+      configurable: true,
+      get() {
+        const boundedFn = originalMethod.bind(this);
+        return boundedFn;
+      },
     };
-  }
+    return adjDescriptor;
+  };
 }
