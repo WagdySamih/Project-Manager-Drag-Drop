@@ -1,5 +1,16 @@
+:root {
+  --main-color: #141e2e;
+  --main-color-light: #676763;
+  --secondary-color: #48e5e4;
+
+  --main-with-opacity: #141e2e4D;
+  --secondary-with-opacity: #48e5e44D;
+}
+
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
@@ -7,9 +18,13 @@ html {
 }
 
 body {
-  margin: 0;
+  background-color: var(--main-color-light);
 }
 
+#app{
+  display: flex;
+  flex-wrap: wrap;
+}
 label,
 input,
 textarea {
@@ -19,15 +34,18 @@ textarea {
 
 label {
   font-weight: bold;
+  font-size: 16px;
+  color: #ffffff;
 }
 
 input,
 textarea {
   font: inherit;
-  padding: 0.2rem 0.4rem;
+  padding: 0.5rem;
   width: 100%;
   max-width: 30rem;
   border: 1px solid #ccc;
+  border-radius: 10px;
 }
 
 input:focus,
@@ -38,11 +56,14 @@ textarea:focus {
 
 button {
   font: inherit;
-  background: #ff0062;
-  border: 1px solid #ff0062;
+  font-weight: 500;
+  background: var(--main-color-light);
+  border: 1px solid var(--main-color-light);
   cursor: pointer;
-  color: white;
+  color: #ffffff;
   padding: 0.75rem 1rem;
+  margin-top: 2rem;
+  border-radius: 8px;
 }
 
 button:focus {
@@ -51,29 +72,37 @@ button:focus {
 
 button:hover,
 button:active {
-  background: #a80041;
-  border-color: #a80041;
+  background: #48e5e4;
+  border-color: #48e5e4;
 }
-
+#project-list{
+  display: flex;
+}
 .projects {
   margin: 1rem;
-  border: 1px solid #ff0062;
+  border: 1px solid var(--main-color);
+  margin-top: 2rem;
+  border-radius: 8px;
+  background-color: #fff;
+  /* min-height: 200px; */
+  width: calc(50% - 2rem);
 }
 
 .projects header {
-  background: #ff0062;
-  height: 3.5rem;
+  background: var(--main-color);
+  height: 4.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  text-transform: capitalize;
 }
 
 #finished-projects {
-  border-color: #0044ff;
+  border-color: var(--secondary-color);
 }
 
 #finished-projects header {
-  background: #0044ff;
+  background: var(--secondary-color);
 }
 
 .projects h2 {
@@ -85,6 +114,7 @@ button:active {
   list-style: none;
   margin: 0;
   padding: 1rem;
+  height: calc(100% - 4.5rem)
 }
 
 .projects li {
@@ -95,12 +125,12 @@ button:active {
 }
 
 .projects li h2 {
-  color: #ff0062;
+  color: var(--main-color);
   margin: 0.5rem 0;
 }
 
 #finished-projects li h2 {
-  color: #0044ff;
+  color: var(--secondary-color);
 }
 
 .projects li h3 {
@@ -113,16 +143,18 @@ button:active {
 }
 
 .droppable {
-  background: #ffe3ee;
+  background: var(--main-with-opacity);
 }
 
 #finished-projects .droppable {
-  background: #d6e1ff;
+  background: var(--secondary-with-opacity);
 }
 
 #user-input {
   margin: 1rem;
   padding: 1rem;
-  border: 1px solid #ff0062;
-  background: #f7f7f7;
+  border: 1px solid var(--main-color);
+  border-radius: 8px;
+  background: var(--main-color);
+  width: 100%;
 }
