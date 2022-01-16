@@ -5,6 +5,7 @@ interface Validatable {
   maxLength?: number;
   min?: number;
   max?: number;
+  error: string
 }
 
 export function validate(input: Validatable) {

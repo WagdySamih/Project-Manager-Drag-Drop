@@ -27,26 +27,34 @@ export class ProjectInput extends Component<HTMLDivElement, HTMLFormElement> {
     const description = this.descriptionInputEl.value;
     const people = +this.peopleInputEl.value;
 
-    const isTitleValid = validate({
+    const titleValidation = {
       value: title,
       required: true,
       minLength: 3,
-      maxLength: 10,
-    });
-    const isDescValid = validate({
+      maxLength: 50,
+      error: 'Title must be between 3 & 50 letters'
+    }
+    const descriptionValidation = {
       value: description,
       required: true,
       minLength: 3,
-      maxLength: 10,
-    });
-    const isPeopleValid = validate({
+      maxLength: 200,
+      error: 'Description must be between 3 & 150 letters'
+    }
+    const peopleValidation = {
       value: people,
       required: true,
       min: 1,
       max: 10,
-    });
+      error: 'Assigned people number must be between 1 & 10'
+    }
+    const isTitleValid = validate(titleValidation);
+    const isDescValid = validate(descriptionValidation);
+    const isPeopleValid = validate(peopleValidation);
     if (!isTitleValid || !isDescValid || !isPeopleValid) {
-      alert("please enter valid values!..");
+      !isTitleValid && alert( titleValidation.error);
+      !isDescValid && alert( descriptionValidation.error);
+      !isPeopleValid && alert( peopleValidation.error)
       return;
     } else {
       return [title, description, +people];
